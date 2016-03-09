@@ -24,9 +24,13 @@ class EventsController < ApplicationController
 	def create
 	#for Strong Parameters		
 		@event = Event.new(event_params)
-		@event.save
-#		redirect_to :action => :index
-		redirect_to events_path #RESTful		
+		if @event.save
+#			redirect_to :action => :index
+			redirect_to events_path #RESTful
+		else
+			#if can't save, ex. no name, this will direct to new.html.erb
+			render :action => :new #new.html.erb
+		end		
 	end
 #GET /events/edit/:id
 #GET /events/:id/edit <= RESTful	
@@ -37,11 +41,16 @@ class EventsController < ApplicationController
 #PATCH /events/:id <= RESTful
 	def update
 #		@event = Event.find(params[:id])
-		@event.update(event_params)
-		#ask client to require /events/show/:id
-#		redirect_to :action => :show, :id => @event
+		if @event.update(event_params)
+			#ask client to require /events/show/:id
+#			redirect_to :action => :show, :id => @event
+			redirect_to events_path #RESTful
+		else
+#			redirect_to edit_event_path(@event) #RESTful
+			#if can't save, ex. no name, this will direct to new.html.erb
+			render :action => :new #new.html.erb
+		end		
 
-		redirect_to events_path #RESTful
 	end
 #GET /events/destroy/:id
 #DELETE /events/:id <= RESTful
