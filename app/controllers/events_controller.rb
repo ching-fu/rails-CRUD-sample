@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+
+	before_action :set_event, :only => [:show,:edit,:update,:destroy]
+
 #GET /events/index
 #GET /events
 	def index
@@ -12,7 +15,7 @@ class EventsController < ApplicationController
 #GET /events/show/:id
 #GET /events/:id <= RESTful	
 	def show
-		@event = Event.find(params[:id])
+#		@event = Event.find(params[:id])
 		@page_title = @event.name
 
 	end
@@ -28,12 +31,12 @@ class EventsController < ApplicationController
 #GET /events/edit/:id
 #GET /events/:id/edit <= RESTful	
 	def edit
-		@event = Event.find(params[:id])
+#		@event = Event.find(params[:id])
 	end
 #POST /events/update/:id
 #PATCH /events/:id <= RESTful
 	def update
-		@event = Event.find(params[:id])
+#		@event = Event.find(params[:id])
 		@event.update(event_params)
 		#ask client to require /events/show/:id
 #		redirect_to :action => :show, :id => @event
@@ -43,10 +46,14 @@ class EventsController < ApplicationController
 #GET /events/destroy/:id
 #DELETE /events/:id <= RESTful
 	def destroy
-		@event = Event.find(params[:id])
+#		@event = Event.find(params[:id])
 		@event.destroy
 #		redirect_to :action => :index
 		redirect_to events_path #RESTful	
+	end
+
+	def set_event
+		@event = Event.find(params[:id])
 	end
 
 	private
