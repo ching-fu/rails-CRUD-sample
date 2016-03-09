@@ -25,6 +25,7 @@ class EventsController < ApplicationController
 	#for Strong Parameters		
 		@event = Event.new(event_params)
 		if @event.save
+			flash[:notice] = "event was successfully created"
 #			redirect_to :action => :index
 			redirect_to events_path #RESTful
 		else
@@ -42,6 +43,7 @@ class EventsController < ApplicationController
 	def update
 #		@event = Event.find(params[:id])
 		if @event.update(event_params)
+			flash[:notice] = "event was successfully updated"			
 			#ask client to require /events/show/:id
 #			redirect_to :action => :show, :id => @event
 			redirect_to events_path #RESTful
@@ -57,6 +59,7 @@ class EventsController < ApplicationController
 	def destroy
 #		@event = Event.find(params[:id])
 		@event.destroy
+		flash[:alert] = "event was successfully deleted"		
 #		redirect_to :action => :index
 		redirect_to events_path #RESTful	
 	end
