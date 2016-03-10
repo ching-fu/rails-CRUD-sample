@@ -7,6 +7,19 @@ class EventsController < ApplicationController
 	def index
   		#@events = Event.all
 		@events = Event.page(params[:page]).per(5)#for kaminari
+
+		respond_to do |format|
+			format.html #index.html.erb
+			format.xml {
+				render :xml => @events.to_xml
+			}
+			format.json {
+				render :json => @events.to_json
+			}
+			format.atom {
+				@feed_title = "My event list"
+			}# atom should use index.atom.builder!!
+		end	
 	end
 #GET /events/new
 	def new
@@ -18,7 +31,14 @@ class EventsController < ApplicationController
 	def show
 #		@event = Event.find(params[:id])
 		@page_title = @event.name
-
+		respond_to do |format|
+			format.html { @page_title = @event.name } # show.html.erb
+			format.xml # template: show.xml.builder	
+			format.json { 
+				#manual list
+				render :json => { id: @event.id, name: @event.name, created_time: @event.created_at }.to_json 
+			}
+		end
 	end
 #POST /events/create
 #POST /events <= RESTful	
