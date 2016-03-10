@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'kaminari'
-gem 'pg'
+gem 'pg', group: :production
 gem 'rails_12factor', group: :production
 
 # Use jquery as the JavaScript library
