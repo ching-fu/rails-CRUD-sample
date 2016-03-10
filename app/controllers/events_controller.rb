@@ -8,6 +8,9 @@ class EventsController < ApplicationController
   		#@events = Event.all
 		@events = Event.page(params[:page]).per(5)#for kaminari
 
+		Rails.logger.debug("this is Rails.logger!!")
+		Rails.logger.debug("richardyu": + @events.count)		
+
 		respond_to do |format|
 			format.html #index.html.erb
 			format.xml {
