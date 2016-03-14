@@ -1,0 +1,7 @@
+<h1>Attendees new.html.erb</h1>
+
+<%= form_for @attendee, :url => event_attendees_path(@event) do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>	
+    <%= f.submit "create" %>
+<% end %>

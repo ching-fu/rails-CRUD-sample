@@ -1,0 +1,7 @@
+<h1>Attendees edit.html.erb</h1>
+
+<%= form_for @attendee, :url => event_attendee_path(@event, @attendee),:method=>:patch do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>	
+    <%= f.submit "update" %>
+<% end %>

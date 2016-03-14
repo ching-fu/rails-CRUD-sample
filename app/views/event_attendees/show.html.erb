@@ -1,0 +1,5 @@
+<h1>Attendees Show <%= @event.name%></h1>
+<p>
+	<%= @attendee.name %>
+</p>
+<%= link_to 'back to attendee', event_attendees_path(@event)%>

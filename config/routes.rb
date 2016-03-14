@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 #    match ':controller(/:action(/:id(.:format)))', :via => :all
 # for RESTful
-  resources :events
+  resources :events do#default controller name will be attendees
+    resources :attendees, :controller => "event_attendees"
+  end
   root :to => 'events#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
