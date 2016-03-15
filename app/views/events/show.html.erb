@@ -3,7 +3,12 @@
 <p>Category: <%= @event.category.try(:name) %><p>
 <!-- below please see delegate in event.rb -->
 <!-- <p>Category: <%#= @event.category.try(:name) %><p> -->
-
+<ul>
+<% @event.groups.each do |g|
+%>
+	<li><%= g.name %></li>
+<%end%>
+</ul>
 <%= simple_format(@event.description) %>
 
 <p>

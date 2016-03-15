@@ -96,7 +96,7 @@ class EventsController < ApplicationController
 	#for Strong Parameters
 	#to read :name & :description from params[:event]
 	def event_params
-  		params.require(:event).permit(:name, :description, :category_id)
+  		params.require(:event).permit(:name, :description, :category_id, :group_ids => [])
 	end
 
 end

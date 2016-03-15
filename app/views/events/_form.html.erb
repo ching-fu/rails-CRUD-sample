@@ -10,6 +10,10 @@
 <%= c.name%>
 <%end%>
 
+<%= f.collection_check_boxes(:group_ids, Group.all,
+:id, :name) %>
+
+
 <% if @event.errors.any? %>
 <ul>
 <% @event.errors.full_messages.each do |msg| %>
