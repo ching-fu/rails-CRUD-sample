@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 # for RESTful
   resources :events do#default controller name will be attendees
     resources :attendees, :controller => "event_attendees"
+    resource :location, :controller => "event_locations"
   end
   root :to => 'events#index'
 
