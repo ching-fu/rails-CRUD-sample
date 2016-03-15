@@ -1,4 +1,9 @@
 <%= @event.name %>
+<!-- below will try to find category, if not, give nil -->
+<p>Category: <%= @event.category.try(:name) %><p>
+<!-- below please see delegate in event.rb -->
+<!-- <p>Category: <%#= @event.category.try(:name) %><p> -->
+
 <%= simple_format(@event.description) %>
 
 <p>
