@@ -1,8 +1,14 @@
-<%#= f.collection_select(:category_id, Category.all,
-:id, :name) %>
+<%= f.collection_select(:category_id, Category.all,
+:id, :name, :include_blank => "please select") %>
+<!-- include_blank can be replaced by prompt-->
 <!-- above are the same with below -->
-<%= f.select :category_id, Category.all.map{ |c|
+<%#= f.select :category_id, Category.all.map{ |c|
 [c.name, c.id] } %>
+
+<% Category.all.each do |c|%>
+<%= f.radio_button :category_id, c.id %>
+<%= c.name%>
+<%end%>
 
 <% if @event.errors.any? %>
 <ul>
