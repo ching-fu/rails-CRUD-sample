@@ -1,7 +1,10 @@
 class EventsController < ApplicationController
 
-	before_action :set_event, :only => [:show,:edit,:update,:destroy]
+	before_action :set_event, :only => [:show,:edit,:update,:destroy, :dashboard]
+#GET /event/:id/dashboard
+	def dashboard
 
+	end
 #GET /event/latest
 	def latest
 		@events=Event.order("id DESC").limit(2)

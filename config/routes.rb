@@ -7,7 +7,10 @@ Rails.application.routes.draw do
     collection do
       get :latest
       post :bulk_delete
-      post :bulk_update      
+      post :bulk_update
+    end
+    member do
+      get :dashboard
     end
   end
   root :to => 'events#index'

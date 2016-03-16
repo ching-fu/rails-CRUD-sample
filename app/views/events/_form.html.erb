@@ -1,7 +1,7 @@
 
 <div class="form-group">
 	<%= f.label :name, "Name"%>
-	<%= f.select :status, [["Published","published"],["Draft","draft"]]%>
+	<%= f.select :status, [["Published","published"],["Draft","draft"]]%> 
 </div>
 <!-- fields_for to modify event.location -->
 <%= f.fields_for :location do |location_form| %>
