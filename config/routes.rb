@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resource :location, :controller => "event_locations"
     collection do
       get :latest
+      post :bulk_delete
+      post :bulk_update      
     end
   end
   root :to => 'events#index'

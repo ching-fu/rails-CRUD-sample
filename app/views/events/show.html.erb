@@ -1,4 +1,5 @@
 <%= @event.name %>
+<%= @event.status %>
 <!-- below will try to find category, if not, give nil -->
 <p>Category: <%= @event.category.try(:name) %><p>
 <!-- below please see delegate in event.rb -->

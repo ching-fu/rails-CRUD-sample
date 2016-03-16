@@ -6,6 +6,26 @@ class EventsController < ApplicationController
 	def latest
 		@events=Event.order("id DESC").limit(2)
 	end
+#POST /events/bulk_delete
+	def bulk_delete
+		Event.destroy_all
+		redirect_to :back
+	end
+#POST /events/bulk_update
+	def bulk_update
+		#Array will transfer all inputs into an array or []
+		#prevent to receive nil
+		ids=Array(params[:ids])
+		#with nil, find will raise an exception, find_by_id will return Nil
+		#array.compact will remove all nils within
+		events=ids.map{|i|Event.find_by_id(i)}.compact
+		if params[:commit] == "Delete"
+			events.each {|e|e.destory}
+		elsif params[:commit] == "Publish"
+			events.each {|e|e.update(:status => "published")}	
+		end
+		redirect_to :back
+	end
 #GET /events/index
 #GET /events
 	def index
@@ -100,7 +120,7 @@ class EventsController < ApplicationController
 	#for Strong Parameters
 	#to read :name & :description from params[:event]
 	def event_params
-  		params.require(:event).permit(:name, :description, :category_id, :group_ids => [], :location_attributes =>
+  		params.require(:event).permit(:name, :description, :category_id, :status, :group_ids => [], :location_attributes =>
 [:id, :name, :_destroy])
   	#_destory is related to all_destroy in accepts_nested_attributes_for in event.rb 
 	end

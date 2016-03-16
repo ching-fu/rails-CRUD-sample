@@ -2,11 +2,13 @@
     <%= link_to 'Latest events',latest_events_path%>
 </p>
 
-
+<%= form_tag bulk_update_events_path do %>
 <table class="table">
 <% @events.each do |e| %>
   <tr>
   <td>
+  <!-- below will add an ids[] in params -->
+    <%= check_box_tag "ids[]", e.id, false%>
  	  <%= e.name %>
     </td>
     <td>
@@ -29,8 +31,13 @@
   </td>
 <% end %>
 </table>
+  <%= submit_tag "Delete"%>
+  <%= submit_tag "Publish"%>  
+<%end%>
 <%#= link_to 'New Event', :controller => 'events', :action => 'new' %>
 <%= link_to 'New Event',new_event_path %>
+<!-- button_to default is POST -->
+<%= button_to "Delete All", bulk_delete_events_path %>
 
 <%= paginate @events %>
 
