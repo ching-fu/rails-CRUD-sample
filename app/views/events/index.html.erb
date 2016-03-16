@@ -21,6 +21,10 @@
  	  <%= e.name %>
     </td>
     <td>
+      <%= e.user.try(:email)%>
+
+    </td>
+    <td>
   <%#= link_to 'Show', :controller => 'events', :action => 'show', :id => event %>
   <%= link_to 'Show', event_path(e), :class => "btn btn-primary" %>
   <%= link_to 'Dashboard', dashboard_event_path(e), :class => "btn btn-primary" %>
