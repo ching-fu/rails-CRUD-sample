@@ -39,6 +39,12 @@ class EventsController < ApplicationController
 		else
 			@events=Event.all
 		end
+		if params[:order]
+			sort_by = (params[:order] == 'name') ? 'name' :
+'id'
+			#obj.order won't check input SQL ,should be ensured yourself
+			@events=@events.order(sort_by)
+		end
 		@events = @events.page(params[:page]).per(5)
 
 		Rails.logger.debug("this is Rails.logger!!")

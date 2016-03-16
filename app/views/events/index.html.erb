@@ -8,6 +8,10 @@
 
 
 <%= form_tag bulk_update_events_path do %>
+<%= link_to 'Sort by Name', events_path( :order =>
+"name") %>
+<%= link_to 'Sort by Default', events_path %>
+
 <table class="table">
 <% @events.each do |e| %>
   <tr>
