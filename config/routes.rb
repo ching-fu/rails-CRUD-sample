@@ -13,6 +13,12 @@ Rails.application.routes.draw do
       get :dashboard
     end
   end
+
+  namespace :admin do
+    #default :controller => "admin::events"
+    resources :events
+  end
+
   root :to => 'events#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
