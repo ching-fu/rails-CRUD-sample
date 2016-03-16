@@ -1,5 +1,5 @@
 <%#= form_for @event, :url => { :controller => 'events', :action => 'create' } do |f| %>
-<%= form_for @event, :url => events_path do |f| %>
+<%= form_for setup_event(@event), :url => events_path do |f| %>
 <!-- render will use _form.html.erb -->
 	<%= render :partial => 'form', :locals => { :f => f } %>
 

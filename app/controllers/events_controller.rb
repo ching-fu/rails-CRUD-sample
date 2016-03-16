@@ -96,7 +96,9 @@ class EventsController < ApplicationController
 	#for Strong Parameters
 	#to read :name & :description from params[:event]
 	def event_params
-  		params.require(:event).permit(:name, :description, :category_id, :group_ids => [])
+  		params.require(:event).permit(:name, :description, :category_id, :group_ids => [], :location_attributes =>
+[:id, :name, :_destroy])
+  	#_destory is related to all_destroy in accepts_nested_attributes_for in event.rb 
 	end
 
 end
