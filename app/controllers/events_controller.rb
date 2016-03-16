@@ -2,6 +2,10 @@ class EventsController < ApplicationController
 
 	before_action :set_event, :only => [:show,:edit,:update,:destroy]
 
+#GET /event/latest
+	def latest
+		@events=Event.order("id DESC").limit(2)
+	end
 #GET /events/index
 #GET /events
 	def index
