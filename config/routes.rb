@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
 #    match ':controller(/:action(/:id(.:format)))', :via => :all
 # for RESTful
   resources :events do#default controller name will be attendees
