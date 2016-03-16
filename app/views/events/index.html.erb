@@ -1,6 +1,11 @@
 <p>
     <%= link_to 'Latest events',latest_events_path%>
 </p>
+<%= form_tag events_path, :method => :get do %>
+<%= text_field_tag "keyword" %>
+<%= submit_tag "Search" %>
+<% end %>
+
 
 <%= form_tag bulk_update_events_path do %>
 <table class="table">

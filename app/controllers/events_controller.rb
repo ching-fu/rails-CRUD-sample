@@ -33,7 +33,13 @@ class EventsController < ApplicationController
 #GET /events
 	def index
   		#@events = Event.all
-		@events = Event.page(params[:page]).per(5)#for kaminari
+#		@events = Event.page(params[:page]).per(5)#for kaminari
+		if params[:keyword]
+			@events=Event.where(["name like ?","%#{params[:keyword]}%"])
+		else
+			@events=Event.all
+		end
+		@events = @events.page(params[:page]).per(5)
 
 		Rails.logger.debug("this is Rails.logger!!")
 		Rails.logger.debug("richardyu": + @events.count)		
