@@ -7,10 +7,8 @@ class Admin::EventsController < ApplicationController
 
 	protected
 	def authenticate
-		authenticate_or_request_with_http_basic do
-|user_name, password|
-			user_name == "username" && password ==
-"password"
+		authenticate_or_request_with_http_basic do |user_name, password|
+			user_name == "username" && password =="password"
 		end
 	end	
 end

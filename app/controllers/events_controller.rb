@@ -8,6 +8,7 @@ class EventsController < ApplicationController
 	end
 #GET /event/latest
 	def latest
+#		@events=Event.order(:created_at).limit(2)		
 		@events=Event.order("id DESC").limit(2)
 	end
 #POST /events/bulk_delete
