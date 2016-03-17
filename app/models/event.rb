@@ -9,6 +9,7 @@ class Event < ActiveRecord::Base
 #delegate make @event.category_name is available	
 	delegate :name, :to => :category, :prefix => true, :allow_nil => true
 
-	belongs_to :user
-
+#	belongs_to :user
+	has_many :memberships
+	has_many :users, :through => :memberships
 end

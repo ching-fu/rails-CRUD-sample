@@ -11,6 +11,15 @@
 <%end%>
 </ul>
 <%= simple_format(@event.description) %>
+<p>----------------------------</p>
+<% @event.users.each do |u| %>
+  <p><%= u.first_name %> <%= u.last_name %></p>  
+<% end %>
+
+
+<%= button_to "Join", join_event_path(@event) %>
+<%= button_to "Withdraw", withdraw_event_path(@event)
+%>
 
 <p>
 <%#= link_to 'Back to index', :controller => 'events', :action => 'index' %>

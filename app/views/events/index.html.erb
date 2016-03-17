@@ -21,7 +21,10 @@
  	  <%= e.name %>
     </td>
     <td>
-      <%= e.user.try(:short_name)%>
+      <% e.users.each do |u| %>
+        <p><%= u.try(:short_name) %></p>
+      <% end %>    
+      <%#= e.user.try(:short_name)%>
 
     </td>
     <td>

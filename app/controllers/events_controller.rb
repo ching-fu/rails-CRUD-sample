@@ -2,6 +2,19 @@ class EventsController < ApplicationController
 
 	before_action :authenticate_user!, :except => [:index]
 	before_action :set_event, :only => [:show,:edit,:update,:destroy, :dashboard]
+
+	def join
+		@event = Event.find(params[:id])
+		Membership.find_or_create_by( :event => @event,:user => current_user )
+		redirect_to :back
+	end
+	def withdraw
+		@event = Event.find(params[:id])
+		@membership = Membership.find_by( :event => @event,:user => current_user )
+		@membership.destroy
+		redirect_to :back
+	end
+
 #GET /event/:id/dashboard
 	def dashboard
 
