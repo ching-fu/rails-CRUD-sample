@@ -1,10 +1,13 @@
 namespace :dev do
+	#db:setup == db:create + db:schema:load + db:seed
+	task :rebuild => ["db:drop","db:setup", :fake]
+
 	task :demo => :environment do
 		#should load environment for read Event
 		puts "rake demo"
 		puts Event.count
 	end
-
+	desc "create fake Event & Attendee"
 	task :fake => :environment do
 		User.delete_all
 		Event.delete_all
