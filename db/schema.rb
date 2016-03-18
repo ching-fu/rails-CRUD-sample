@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160317034023) do
     t.text     "description"
     t.boolean  "is_public"
     t.integer  "capacity"
+    t.string   "foobar"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "status"

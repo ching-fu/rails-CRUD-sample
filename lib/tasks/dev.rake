@@ -12,9 +12,9 @@ namespace :dev do
 
 		puts "Creating fake data!!"
 		user = User.create!(:email => "afu@hotmail.com", :password => "aaaaaaaa")
-		100.times do |i|
+		20.times do |i|
 			e=Event.create(:name => Faker::App.name)
-			100.times do |j|
+			20.times do |j|
 				e.attendees.create(:name => Faker::Name.name)
 			end
 		end
