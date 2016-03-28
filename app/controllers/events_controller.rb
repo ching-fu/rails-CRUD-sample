@@ -120,6 +120,9 @@ class EventsController < ApplicationController
 #POST /events/update/:id
 #PATCH /events/:id <= RESTful
 	def update
+		if params[:_remove_logo]=="1"
+			@event.logo=nil
+		end
 #		@event = Event.find(params[:id])
 		if @event.update(event_params)
 			flash[:notice] = "event was successfully updated"			
@@ -151,7 +154,7 @@ class EventsController < ApplicationController
 	#for Strong Parameters
 	#to read :name & :description from params[:event]
 	def event_params
-  		params.require(:event).permit(:name, :description, :category_id, :status, :group_ids => [], :location_attributes =>
+  		params.require(:event).permit(:logo, :name, :description, :category_id, :status, :group_ids => [], :location_attributes =>
 [:id, :name, :_destroy])
   	#_destory is related to all_destroy in accepts_nested_attributes_for in event.rb 
 	end

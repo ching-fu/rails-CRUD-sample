@@ -1,3 +1,12 @@
+<div class="form-group">
+	<%= f.file_field :logo%>
+	<% if @event.logo.exists?%>
+		<%= @event.logo.url.split("/").last.split("?").first%>	
+		<%= check_box_tag "_remove_logo","1"%>Remove logo
+	<%else%>
+	<%end%>
+</div>
+
 
 <div class="form-group">
 	<%= f.label :name, "Name"%>

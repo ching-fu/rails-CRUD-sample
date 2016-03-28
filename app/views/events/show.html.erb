@@ -1,5 +1,12 @@
 <%= @event.name %>
 <%= @event.status %>
+<div>
+<% if @event.logo.exists? %>
+	<%= image_tag(@event.logo.url(:thumb))%>
+<%else%>
+	<%= "None"%>	
+<%end%>
+</div>
 <!-- below will try to find category, if not, give nil -->
 <p>Category: <%= @event.category.try(:name) %><p>
 <!-- below please see delegate in event.rb -->
@@ -26,3 +33,10 @@
 <!-- target to index.html, use events_path -->
 <%= link_to 'Back to index', events_path %>
 </p>
+<div>
+<% if @event.logo.exists? %>
+	<%= image_tag(@event.logo.url)%>
+<%else%>
+	<%= "None"%>	
+<%end%>
+</div>
