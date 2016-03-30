@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   #tell devise, after FB reply, return to omniauth_callbacks
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+  get "/ajaxhome" => "ajaxhost#index"
+  get "/ajaxitem" => "ajaxhost#ajaxitem"
+
 #    match ':controller(/:action(/:id(.:format)))', :via => :all
 # for RESTful
   resources :events do#default controller name will be attendees

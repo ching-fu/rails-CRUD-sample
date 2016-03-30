@@ -1,0 +1,49 @@
+<h1>index.html.erb of ajaxhost</h1>
+<div id="content">
+	default
+</div>
+
+<%= link_to "json", ajaxitem_path, :id => "ajaxjson",:class => "btn btn-default"%>
+<%= link_to "html", ajaxitem_path, :id => "ajaxhtml",:class => "btn btn-default"%>
+<%= link_to "js", ajaxitem_path, :id => "ajaxjs",:class => "btn btn-default"%>
+<!-- below == above -->
+<%= link_to "remote true", ajaxitem_path, :remote => true, :class => "btn btn-default"%>
+
+
+<script>
+$(document).ready(function(){
+	$('body').on('click','#ajaxhtml',function(e){
+		e.preventDefault();
+		var url=$(e.currentTarget).attr('href');
+//		alert(url)
+		$.ajax(url, {
+			success: function(data) {
+				alert(data);
+		        $("#content").html(data)
+		    }
+		})
+	})
+
+	$("#ajaxjs").click(function(e){
+		e.preventDefault();
+		var url =  $(this).attr("href");
+		$.ajax(url, {
+			dataType: "script"//return ajaxitem.js.erb
+		})
+	})
+	$("#ajaxjson").click(function(e){
+		e.preventDefault();
+		var url =  $(this).attr("href");
+		$.ajax(url, {
+			dataType: "json",//return ajaxitem.js.erb
+			success: function(data) {
+				console.log(data);
+		        $("#content").html(data.timenow)
+		        $("#content").append("<p>"+data.name+"</p>")
+		    }			
+		})
+	})
+
+});
+
+</script>
