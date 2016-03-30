@@ -1,12 +1,13 @@
 <h1>Attendees index.html.erb of event.name=<%= @event.name%></h1>
-<ul>
+<table>
 <% @attendees.each do |a|%>
-	<li>
-		<%=a.name%>
-		<%= link_to ' attendee Show', event_attendee_path(@event,a)%>
-		<%= link_to ' attendee Edit', edit_event_attendee_path(@event,a)%>		
-		<%= link_to ' attendee delete', event_attendee_path(@event,a), :method => :delete, :data=>{:confirm=>"are u sure?"}%>		
-	</li>
+	<tr>
+		<td><%=a.name%></td>
+		<td><%= link_to ' attendee Show', event_attendee_path(@event,a), :class => "btn btn-default"%></td>
+		<td><%= link_to ' attendee Edit', edit_event_attendee_path(@event,a), :class => "btn btn-default"%></td>
+		<td><%= link_to ' attendee delete', event_attendee_path(@event,a), :method => :delete, :data=>{:confirm=>"are u sure?"}, :class => "btn btn-default"%></td>
+	</tr>
 <% end %>
-</ul>
-<%= link_to 'create attendee', new_event_attendee_path(@event)%>
+</table>
+<%= link_to 'create attendee', new_event_attendee_path(@event), :class => "btn btn-primary"%>
+<%= link_to 'back to event list', events_path , :class => "btn btn-primary"%>

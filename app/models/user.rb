@@ -7,9 +7,16 @@ class User < ActiveRecord::Base
 #  has_many :events
   has_many :memberships
   has_many :events, :through => :memberships
+  def get_fb_data
+    #should notice "self." will need a real instance, be aware that what you see 
+    #on browser is not the same with the status of the server
+    #in rails console, ex. User.last.get_fb_data can get data if last user's fb token is not expired
+    j = RestClient.get "https://graph.facebook.com/v2.5/me", :params => { :access_token => self.fb_token, :fields => "id,name,email,picture" }
+    JSON.parse(j)
+  end
 
   def short_name
-  	self.email.split("@").first
+    self.email.split("@").first
   end
   def admin?
   	self.role == "admin"

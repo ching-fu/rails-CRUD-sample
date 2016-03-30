@@ -1,7 +1,7 @@
 class EventAttendeesController < ApplicationController
 	before_action :set_event
 	def index
-		@attendees=@event.attendees
+		@attendees=@event.attendees.order("id DESC")
 	end
 	def show
 		@attendee=@event.attendees.find(params[:id])
