@@ -1,0 +1,7 @@
+	<tr id="tr-<%=a.id%>">
+		<td><%=a.name%></td>
+		<td><%= link_to ' attendee Show', event_attendee_path(@event,a), :class => "btn btn-default"%></td>
+		<td><%= link_to ' attendee Edit', edit_event_attendee_path(@event,a), :class => "btn btn-default"%></td>
+		<td><%= link_to ' attendee delete', event_attendee_path(@event,a), :method => :delete, :data=>{:confirm=>"are u sure?"}, :class => "btn btn-default"%></td>
+		<td><%= link_to ' delete by AJAX', event_attendee_path(@event,a), :remote=>true, :method => :delete, :class => "btn btn-default"%></td>		
+	</tr>

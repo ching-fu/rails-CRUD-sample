@@ -1,0 +1,14 @@
+
+// below only prepend the name
+//
+var id=$('table tr').first().attr('id')
+new_id=<%=@attendee.id%>
+id='#'+id
+//alert(id)
+item='<tr id="tr-'+new_id+'"><td><%=@attendee.name%>'+'</td></tr>'
+//alert(item)
+$(id).closest("table").prepend(item);
+$("#newname").val('');
+//$("#newname").trigger('reset'); //this can't work with form-tag??
+
+//

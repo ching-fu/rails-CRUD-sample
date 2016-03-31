@@ -7,12 +7,23 @@ class EventAttendeesController < ApplicationController
 		@attendee=@event.attendees.find(params[:id])
 	end
 	def new
+		puts 'here is new of attendee'
 		@attendee=@event.attendees.build		
 	end
 	def create
-		@attendee=@event.attendees.build(attendee_params)
+		puts 'here is create of attendee'
+		if params[:newname]
+			puts params[:newname]
+			@attendee=@event.attendees.build
+			@attendee.name=params[:newname]
+		else
+			@attendee=@event.attendees.build(attendee_params)	
+		end
 		if @attendee.save
-			redirect_to event_attendees_path(@event)
+			respond_to do |format|
+      			format.html { redirect_to event_attendees_path(@event) } # item.html.erb
+				format.js # create.js.erb
+    		end
 		else
 			render :action => "new"
 		end
