@@ -1,13 +1,15 @@
-var id=$('table tr').first().attr('id')
-new_id=<%=@attendee.id%>
-id='#'+id
-console.log(id)
-
-item="<%=j render( :partial => "create", :locals => { :a => @attendee }) %>"
-// below only prepend the name
-//item='<tr id="tr-'+new_id+'"><td><%=@attendee.name%>'+'</td></tr>'
-console.log(item)
-
-$(id).closest("table").prepend(item);
-$("#newname").val('');
-//$("#newname").trigger('reset'); //this can't work with form-tag??
+<% if @attendee.valid? %>
+	var id=$('table tr').first().attr('id')
+	new_id=<%=@attendee.id%>
+	id='#'+id
+	console.log(id)
+	item="<%=j render( :partial => "create", :locals => { :a => @attendee }) %>"
+	// below only prepend the name
+	//item='<tr id="tr-'+new_id+'"><td><%=@attendee.name%>'+'</td></tr>'
+	console.log(item)
+	$(id).closest("table").prepend(item);
+	$("#newname").val('');
+	//$("#newname").trigger('reset'); //this can't work with form-tag??
+<% else %>
+	alert('add attendee failed...');
+<% end %>

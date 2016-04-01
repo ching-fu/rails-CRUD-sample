@@ -25,7 +25,10 @@ class EventAttendeesController < ApplicationController
 				format.js # create.js.erb
     		end
 		else
-			render :action => "new"
+			respond_to do |format|
+      			format.html { render :action => "new" } # new.html.erb
+				format.js # create.js.erb
+    		end
 		end
 	end
 	def destroy
