@@ -5,17 +5,12 @@
 
 <% end %>
 </table>
-<%= link_to 'create attendee', new_event_attendee_path(@event), :class => "btn btn-primary"%>
+
 
 <%= form_tag event_attendees_path(@event), :remote=>true do %>
-	<%= text_field_tag "newname" %>
-	<%= submit_tag "create by AJAX" %>
+	<%= text_field_tag "newname"%>
+	<%= submit_tag "create by AJAX"%>
 <% end %>
-<!--  :method => :create, -->
-
-<%#= form_for @event, :url => new_event_attendee_path(@event), :remote=>true do |f|%>
-	<%#= f.text_field :name %>
-	<%#= f.submit %>
-<%# end %>
+<%= link_to 'create attendee', new_event_attendee_path(@event), :class => "btn btn-primary"%>
 
 <%= link_to 'back to event list', events_path , :class => "btn btn-primary"%>
