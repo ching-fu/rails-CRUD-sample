@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :events do#default controller name will be attendees
     resources :attendees, :controller => "event_attendees"
     resource :location, :controller => "event_locations"
+    resources :likes
     collection do
       get :latest
       post :bulk_delete

@@ -19,6 +19,14 @@
 </ul>
 <%= simple_format(@event.description) %>
 <p>----------------------------</p>
+like:<%= event_count_likes(@event)%>
+<% like=@event.is_user_liked(current_user)%>
+<% if like %>
+	<%= link_to 'unlike' , event_like_path(@event,like), :method => :delete, :class=>"btn btn-danger"%>
+<% else %>
+	<%= link_to 'like' , event_likes_path(@event), :method => :post, :class=>"btn btn-primary"%>
+<% end %>
+<p>----------------------------</p>
 <% @event.users.each do |u| %>
   <p><%= u.first_name %> <%= u.last_name %></p>  
 <% end %>

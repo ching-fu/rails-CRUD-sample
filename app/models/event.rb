@@ -17,4 +17,10 @@ class Event < ActiveRecord::Base
 #	has_attached_file :logo	
 #	do_not_validate_attachment_file_type :logo
 
+	has_many :likes
+	#below just to avoid conflict between the events
+	has_many :like_users, :through => :likes, :source => :user
+	def is_user_liked(u)
+		self.likes.find_by_user_id(u.id)
+	end
 end

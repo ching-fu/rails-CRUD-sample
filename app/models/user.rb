@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
 #  has_many :events
   has_many :memberships
   has_many :events, :through => :memberships
+
+  has_many :likes
+  #below just to avoid conflict between the events
+  has_many :like_events, :through => :likes, :source => :event
+
   def get_fb_data
     #should notice "self." will need a real instance, be aware that what you see 
     #on browser is not the same with the status of the server
