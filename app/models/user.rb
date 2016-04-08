@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
   #below just to avoid conflict between the events
   has_many :like_events, :through => :likes, :source => :event
 
+  #create master vs rookie relationship between users in one table
+  has_many :rookies, :class_name => "User", :foreign_key => :master_id, :primary_key => :id
+  belongs_to :master, :class_name => "User", :foreign_key => :master_id, :primary_key => :id
+
   def get_fb_data
     #should notice "self." will need a real instance, be aware that what you see 
     #on browser is not the same with the status of the server
